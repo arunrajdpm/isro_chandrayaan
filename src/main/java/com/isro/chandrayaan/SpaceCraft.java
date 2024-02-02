@@ -42,6 +42,30 @@ public class SpaceCraft {
         }
     }
     
+    public void moveBackward() {
+        switch (direction) {
+            case N:
+                y--;
+                break;
+            case S:
+                y++;
+                break;
+            case E:
+                x--;
+                break;
+            case W:
+                x++;
+                break;
+            case U:
+                z--;
+                break;
+            case D:
+                z++;
+                break;
+        }
+    }
+
+    
     
     
     public enum Direction {

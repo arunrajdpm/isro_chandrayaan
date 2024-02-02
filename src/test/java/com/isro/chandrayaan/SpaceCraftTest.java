@@ -45,5 +45,33 @@ public class SpaceCraftTest {
 		 
 		 
     }
+	
+	@Test
+    public void testMoveBackward_North() {
+        
+		 SpaceCraft spacecraft = new SpaceCraft(0, 0, 0, Direction.N);
+		 spacecraft.moveBackward();
+		 Assertions.assertEquals("(0, -1, 0)", spacecraft.getPosition());
+		 
+    }
+	 
+	@Test
+    public void testMoveBackward_West() {
+        
+		 SpaceCraft spacecraft1 = new SpaceCraft(0, 0, 0, Direction.W);
+		 spacecraft1.moveBackward();
+		 Assertions.assertEquals("(1, 0, 0)", spacecraft1.getPosition());
+		 	 
+    }
+	@Test
+    public void testMoveBack_UpWithMultipleSteps() {
+   
+		 SpaceCraft spacecraft2 = new SpaceCraft(0, 0, 0, Direction.U);
+		 spacecraft2.moveBackward();
+		 spacecraft2.moveBackward();
+		 Assertions.assertEquals("(0, 0, -2)", spacecraft2.getPosition());
+		 
+		 
+    }
 
 }
