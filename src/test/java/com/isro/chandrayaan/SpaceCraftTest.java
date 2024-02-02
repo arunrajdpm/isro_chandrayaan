@@ -1,5 +1,6 @@
 package com.isro.chandrayaan;
 
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
@@ -88,33 +89,51 @@ public class SpaceCraftTest {
 
     @ParameterizedTest
     @MethodSource("validateUpDirection")
-    void test_upDirection(String output, Direction direction) {
+    void test_upDirection(Direction output, Direction direction) {
 		SpaceCraft spacecraft = new SpaceCraft(0, 0, 0, direction);
 		spacecraft.moveUp();
-        Assertions.assertEquals(output, spacecraft.getPosition());
+        Assertions.assertEquals(output, spacecraft.getDirection());
     }
 
     static Stream<Arguments> validateUpDirection() {
         return Stream.of(
-                Arguments.of("(0, 0, -1)", Direction.D),    
-                Arguments.of("(0, 0, 1)", Direction.U)
+                Arguments.of(Direction.U, Direction.N),    
+                Arguments.of(Direction.U, Direction.S)
         );
     }
     
 
     @ParameterizedTest
     @MethodSource("validateDownDirection")
-    void test_downDirection(String output, Direction direction) {
+    void test_downDirection(Direction output, Direction direction) {
 		SpaceCraft spacecraft = new SpaceCraft(0, 0, 0, direction);
 		spacecraft.moveDown();
-        Assertions.assertEquals(output, spacecraft.getPosition());
+        Assertions.assertEquals(output, spacecraft.getDirection());
     }
 
     static Stream<Arguments> validateDownDirection() {
+    	 return Stream.of(
+                 Arguments.of(Direction.D, Direction.N),    
+                 Arguments.of(Direction.D, Direction.S)
+         );
+    }
+    
+    
+    @ParameterizedTest
+    @MethodSource("validateUpdatePositionDirection")
+    void test_validateUpdatePositionDirection(String output, Direction direction, char[] commands) {
+		SpaceCraft spacecraft = new SpaceCraft(0, 0, 0, direction);
+		 
+		spacecraft.updatePosition(commands);
+        Assertions.assertEquals(output, spacecraft.getPosition());
+    }
+
+    static Stream<Arguments> validateUpdatePositionDirection() {
     	return Stream.of(
-                Arguments.of("(0, 0, 1)", Direction.D),    
-                Arguments.of("(0, 0, -1)", Direction.U)
+                Arguments.of("(0, 1, -1)", Direction.N,  new  char[]{'f', 'r', 'u', 'b', 'l'})
         );
     }
+    
+    
 	 
 }

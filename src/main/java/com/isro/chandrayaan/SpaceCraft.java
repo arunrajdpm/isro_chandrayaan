@@ -77,17 +77,44 @@ public class SpaceCraft {
         return direction;
     }
     
+     
+
+    
     public void moveUp() {
-        // Update position only if facing Up/Down, respecting the direction
-        if (direction == Direction.U || direction == Direction.D) {
-            z += (direction == Direction.U) ? 1 : -1;
-        }
+       direction = Direction.U;
     }
 
     public void moveDown() {
-        // Update position only if facing Up/Down, respecting the direction
-        if (direction == Direction.U || direction == Direction.D) {
-            z += (direction == Direction.D) ? 1 : -1;
+    	direction = Direction.D;
+    }
+
+    public void updatePosition(char[] commands) {
+        for (char command : commands) {
+        	
+            switch (command) {
+                case 'f':
+                    moveForward();
+                    break;
+                case 'b':
+                    moveBackward();
+                    break;
+                case 'l':
+                    turnLeft();
+                    break;
+                case 'r':
+                    turnRight();
+                    break;
+                case 'u':
+                    moveUp();
+                    break;
+                case 'd':
+                    moveDown();
+                    break;
+                default:
+                    break;
+            }
+            
+            System.out.println(this.getPosition() + " " + command + " " + this.getDirection());
         }
     }
 
@@ -134,4 +161,5 @@ public class SpaceCraft {
             throw new IllegalStateException("Unexpected direction: " + this);
         }
     }
+    
 }
