@@ -76,6 +76,20 @@ public class SpaceCraft {
     public Direction getDirection() {
         return direction;
     }
+    
+    public void moveUp() {
+        // Update position only if facing Up/Down, respecting the direction
+        if (direction == Direction.U || direction == Direction.D) {
+            z += (direction == Direction.U) ? 1 : -1;
+        }
+    }
+
+    public void moveDown() {
+        // Update position only if facing Up/Down, respecting the direction
+        if (direction == Direction.U || direction == Direction.D) {
+            z += (direction == Direction.D) ? 1 : -1;
+        }
+    }
 
     
     

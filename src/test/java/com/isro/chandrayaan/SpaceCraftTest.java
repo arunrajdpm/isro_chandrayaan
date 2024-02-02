@@ -84,5 +84,37 @@ public class SpaceCraftTest {
                 Arguments.of(Direction.U, Direction.U)
         );
     }
+    
+
+    @ParameterizedTest
+    @MethodSource("validateUpDirection")
+    void test_upDirection(String output, Direction direction) {
+		SpaceCraft spacecraft = new SpaceCraft(0, 0, 0, direction);
+		spacecraft.moveUp();
+        Assertions.assertEquals(output, spacecraft.getPosition());
+    }
+
+    static Stream<Arguments> validateUpDirection() {
+        return Stream.of(
+                Arguments.of("(0, 0, -1)", Direction.D),    
+                Arguments.of("(0, 0, 1)", Direction.U)
+        );
+    }
+    
+
+    @ParameterizedTest
+    @MethodSource("validateDownDirection")
+    void test_downDirection(String output, Direction direction) {
+		SpaceCraft spacecraft = new SpaceCraft(0, 0, 0, direction);
+		spacecraft.moveDown();
+        Assertions.assertEquals(output, spacecraft.getPosition());
+    }
+
+    static Stream<Arguments> validateDownDirection() {
+    	return Stream.of(
+                Arguments.of("(0, 0, 1)", Direction.D),    
+                Arguments.of("(0, 0, -1)", Direction.U)
+        );
+    }
 	 
 }
